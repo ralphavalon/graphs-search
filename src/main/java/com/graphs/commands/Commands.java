@@ -12,10 +12,6 @@ public enum Commands {
 		this.command = command;
 	}
 	
-	public String getName() {
-		return name;
-	}
-	
 	public static Commands getByName(String name) {
 		for (Commands commands : Commands.values()) {
 			if(commands.name.equalsIgnoreCase(name)) {

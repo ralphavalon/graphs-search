@@ -21,9 +21,10 @@ public class GraphServiceTest extends AbstractTest {
 	}
 	
 	@Test
-	public void shouldPassWhenExecuteWithCorrectCommandFileLinesTest() throws IOException {
+	public void shouldPassWhenExecuteWithCorrectCommandFileLinesAndDataFileLinesTest() throws IOException {
 		List<String> commandFileLines = Arrays.asList("distance A-B-C");
-		final List<String> results = graphService.execute(commandFileLines, null);
+		List<String> dataFileLines = Arrays.asList("AB5", "BC4");
+		final List<String> results = graphService.execute(commandFileLines, dataFileLines);
 		assertEquals(1, results.size());
 		assertEquals("9", results.get(0));
 	}
@@ -31,15 +32,25 @@ public class GraphServiceTest extends AbstractTest {
 	@Test
 	public void shouldFailWhenExecuteWithWrongCommandFileLinesTest() throws IOException {
 		List<String> commandFileLines = Arrays.asList("not_existing_command A-B-C");
+		List<String> dataFileLines = Arrays.asList("AB5", "BC4");
 		expect(IllegalArgumentException.class, "No command found with name: not_existing_command");
-		graphService.execute(commandFileLines, null);
+		graphService.execute(commandFileLines, dataFileLines);
 	}
 	
 	@Test
 	public void shouldFailWhenExecuteWithInvalidCommandFileLinesTest() throws IOException {
 		List<String> commandFileLines = Arrays.asList("not_existing_commandA-B-C");
-		expect(IllegalArgumentException.class, "No command found with name: not_existing_commandA-B-C");
-		graphService.execute(commandFileLines, null);
+		List<String> dataFileLines = Arrays.asList("AB5", "BC4");
+		expect(IllegalArgumentException.class, "Missing command instructions. e.g.: distance A-B-C");
+		graphService.execute(commandFileLines, dataFileLines);
+	}
+	
+	@Test
+	public void shouldFailWhenExecuteWithWrongDataFileLinesTest() throws IOException {
+		List<String> commandFileLines = Arrays.asList("distance A-B-C");
+		List<String> dataFileLines = Arrays.asList("AB", "4");
+		expect(IllegalArgumentException.class, "It should follow this order: LetterLetterNumber");
+		graphService.execute(commandFileLines, dataFileLines);
 	}
 	
 }

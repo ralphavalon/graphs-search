@@ -10,7 +10,6 @@ import org.junit.Before;
 import org.junit.Test;
 
 import com.graphs.AbstractTest;
-import com.graphs.domain.Graph;
 
 public class CommandServiceTest extends AbstractTest {
 	
@@ -19,12 +18,13 @@ public class CommandServiceTest extends AbstractTest {
 	@Before
 	public void setUp() {
 		commandService = new CommandServiceImpl();
+		initGraph();
 	}
 	
 	@Test
 	public void shouldPassWhenExecuteWithCorrectCommandFileLinesTest() throws IOException {
 		List<String> commandFileLines = Arrays.asList("distance A-B-C");
-		final List<String> results = commandService.execute(new Graph(), commandFileLines);
+		final List<String> results = commandService.execute(graph, commandFileLines);
 		assertEquals(1, results.size());
 		assertEquals("9", results.get(0));
 	}
@@ -33,14 +33,14 @@ public class CommandServiceTest extends AbstractTest {
 	public void shouldFailWhenExecuteWithWrongCommandFileLinesTest() throws IOException {
 		List<String> commandFileLines = Arrays.asList("not_existing_command A-B-C");
 		expect(IllegalArgumentException.class, "No command found with name: not_existing_command");
-		commandService.execute(new Graph(), commandFileLines);
+		commandService.execute(graph, commandFileLines);
 	}
 	
 	@Test
 	public void shouldFailWhenExecuteWithInvalidCommandFileLinesTest() throws IOException {
 		List<String> commandFileLines = Arrays.asList("not_existing_commandA-B-C");
-		expect(IllegalArgumentException.class, "No command found with name: not_existing_commandA-B-C");
-		commandService.execute(new Graph(), commandFileLines);
+		expect(IllegalArgumentException.class, "Missing command instructions. e.g.: distance A-B-C");
+		commandService.execute(graph, commandFileLines);
 	}
 	
 }
