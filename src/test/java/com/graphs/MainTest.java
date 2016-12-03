@@ -7,12 +7,18 @@ import java.io.PrintStream;
 
 import org.junit.After;
 import org.junit.Before;
+import org.junit.Rule;
 import org.junit.Test;
+import org.junit.rules.ExpectedException;
 
 public class MainTest {
 
+	@Rule
+    public ExpectedException thrown = ExpectedException.none();
+	
 	private final ByteArrayOutputStream outContent = new ByteArrayOutputStream();
 	private final ByteArrayOutputStream errContent = new ByteArrayOutputStream();
+	
 
 	@Before
 	public void setUpStreams() {
@@ -27,10 +33,19 @@ public class MainTest {
 	}
 
 	@Test
-	public void test() {
-		Main.main(null);
+	public void shouldPassWhenDataFileIsGivenTest() {
+		Main.main(new String[]{"data.txt"});
 		final String printedContent = outContent.toString();
 		assertTrue(printedContent.equals("9"));
+	}
+	
+	@Test
+	public void shouldFailWhenMissingDataFileTest() {
+		thrown.expect(IllegalArgumentException.class);
+        thrown.expectMessage("Data file is missing");
+		Main.main(new String[]{});
+		final String printedContent = outContent.toString();
+		assertFalse(printedContent.equals("9"));
 	}
 
 }
