@@ -1,23 +1,22 @@
 package com.graphs;
 
 import java.io.File;
-import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.util.List;
+
+import com.graphs.util.FileUtils;
 
 public class Main {
 	
-	public static void main(String[] args) throws FileNotFoundException {
+	@SuppressWarnings("unused")
+	public static void main(String[] args) throws IOException {
 		validate(args);
-		File dataFile = getFile(args[0]);
-		File commandFile = getFile(args[1]);
+		File dataFile = FileUtils.getFile(args[0]);
+		File commandFile = FileUtils.getFile(args[1]);
+		
+		final List<String> dataFileLines = FileUtils.readLines(dataFile);
+		final List<String> commandFileLines = FileUtils.readLines(commandFile);
 		System.out.print(9);
-	}
-
-	private static File getFile(String filename) throws FileNotFoundException {
-		final File file = new File(filename);
-		if( ! file.exists()) {
-			throw new FileNotFoundException("File \"" + filename + "\" not found");
-		}
-		return file;
 	}
 
 	private static void validate(String[] args) {
