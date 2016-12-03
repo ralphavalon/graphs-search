@@ -36,11 +36,6 @@ public abstract class AbstractTest {
         thrown.expectMessage(message);
 	}
 
-	protected void shouldNotPrintExactly(String text) {
-		final String printedContent = outContent.toString();
-		assertFalse(printedContent.equals(text));
-	}
-	
 	protected void shouldPrintExactly(String text) {
 		final String printedContent = outContent.toString();
 		assertTrue(printedContent.equals(text));
