@@ -5,6 +5,6 @@ import com.graphs.exception.GraphException;
 
 public interface Command {
 	
-	String execute(Graph graph, Object params) throws GraphException;
+	String execute(Graph graph, String[] vertexesToGo, Object... params) throws GraphException;
 
 }

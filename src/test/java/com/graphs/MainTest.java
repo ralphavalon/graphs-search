@@ -12,7 +12,7 @@ public class MainTest extends AbstractTest {
 	@Test
 	public void shouldPassWhenDataFileIsGivenAndDoesExistAndCommandFileIsGivenAndDoesExistTest() throws IOException {
 		Main.main(new String[]{"data.txt", "commands.txt"});
-		shouldPrintExactly("9");
+		shouldPrintlnExactly("9");
 	}
 	
 	@Test

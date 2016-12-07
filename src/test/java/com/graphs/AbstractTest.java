@@ -5,7 +5,6 @@ import static org.junit.Assert.assertTrue;
 import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
 import java.util.Arrays;
-import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -49,14 +48,25 @@ public abstract class AbstractTest {
 		assertTrue(printedContent.equals(text));
 	}
 	
+	protected void shouldPrintlnExactly(String... text) {
+		final String printedContent = outContent.toString();
+		String[] contents = printedContent.split("\r\n");
+		final String errorMessage = "Printed content does not match texts given: %s printed, %s given";
+		assertTrue(String.format(errorMessage, contents.length, text.length), contents.length == text.length);
+		for (int i = 0; i < contents.length; i++) {
+			final String linePrinted = contents[i];
+			assertTrue(linePrinted.equals(text[i]));
+		}
+	}
+	
 	protected void initGraph() {
 		final Vertex a = new Vertex("A");
 		final Vertex b = new Vertex("B");
-		final Vertex c = new Vertex("c");
+		final Vertex c = new Vertex("C");
 		Set<Vertex> set = new HashSet<Vertex>(Arrays.asList(a, b, c));
-		final HashMap<String, Edge> edges = new HashMap<String, Edge>();
-		edges.put("AB", new Edge("AB", a, b, 5));
-		edges.put("BC", new Edge("BC", b, c, 4));
+		final Set<Edge> edges = new HashSet<Edge>();
+		edges.add(new Edge(a, b, 5));
+		edges.add(new Edge(b, c, 4));
 		graph = new Graph(set, edges);
 	}
 

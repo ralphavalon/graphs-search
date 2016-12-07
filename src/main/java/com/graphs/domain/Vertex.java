@@ -36,5 +36,10 @@ public class Vertex {
 			return false;
 		return true;
 	}
+	
+	@Override
+	public String toString() {
+		return id;
+	}
 
 }

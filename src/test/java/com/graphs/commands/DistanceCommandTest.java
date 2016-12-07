@@ -31,8 +31,14 @@ public class DistanceCommandTest extends AbstractTest {
 	
 	@Test
 	public void shouldPassWhenExecuteWithCorrectGraphButNotExistingVertexToGoTest() throws IOException, GraphException {
-		expect(GraphException.class, "NO SUCH ROUTE");
+		expect(GraphException.class, "Vertex 'D' not found");
 		command.execute(graph, new String[] {"A", "B", "D"});
+	}
+	
+	@Test
+	public void shouldPassWhenExecuteWithCorrectGraphButNotExistingRouteToGoTest() throws IOException, GraphException {
+		expect(GraphException.class, "NO SUCH ROUTE");
+		command.execute(graph, new String[] {"C", "A"});
 	}
 	
 }

@@ -30,6 +30,22 @@ public class CommandServiceTest extends AbstractTest {
 	}
 	
 	@Test
+	public void shouldPassWhenExecuteWithNotExistingRouteOnCommandFileLinesTest() throws IOException {
+		List<String> commandFileLines = Arrays.asList("distance A-B-B");
+		final List<String> results = commandService.execute(graph, commandFileLines);
+		assertEquals(1, results.size());
+		assertEquals("NO SUCH ROUTE", results.get(0));
+	}
+	
+	@Test
+	public void shouldPassWhenExecuteWithNotExistingVertexOnCommandFileLinesTest() throws IOException {
+		List<String> commandFileLines = Arrays.asList("distance A-B-F");
+		final List<String> results = commandService.execute(graph, commandFileLines);
+		assertEquals(1, results.size());
+		assertEquals("Vertex 'F' not found", results.get(0));
+	}
+	
+	@Test
 	public void shouldFailWhenExecuteWithWrongCommandFileLinesTest() throws IOException {
 		List<String> commandFileLines = Arrays.asList("not_existing_command A-B-C");
 		expect(IllegalArgumentException.class, "No command found with name: not_existing_command");

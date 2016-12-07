@@ -21,7 +21,7 @@ public class Main {
 		GraphService graphService = new GraphServiceImpl();
 		List<String> results = graphService.execute(commandFileLines, dataFileLines);
 		for (String result : results) {
-			System.out.print(result);
+			System.out.println(result);
 		}
 	}
 

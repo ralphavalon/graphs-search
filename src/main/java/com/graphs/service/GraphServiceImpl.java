@@ -1,9 +1,7 @@
 package com.graphs.service;
 
-import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
-import java.util.Map;
 import java.util.Set;
 
 import com.graphs.domain.Edge;
@@ -14,7 +12,7 @@ public class GraphServiceImpl implements GraphService {
 
 	private CommandService commandService = new CommandServiceImpl();
 	private Set<Vertex> vertexes;
-	private Map<String, Edge> edges;
+	private Set<Edge> edges;
 	
 	@Override
 	public List<String> execute(List<String> commandFileLines, List<String> dataFileLines) {
@@ -24,7 +22,7 @@ public class GraphServiceImpl implements GraphService {
 	}
 
 	private void setVertexesAndEdges(List<String> dataFileLines) {
-		edges = new HashMap<String, Edge>();
+		edges = new HashSet<Edge>();
 		vertexes = new HashSet<Vertex>();
 		for (String dataFileLine : dataFileLines) {
 			if(dataFileLine.length() < 3) {
@@ -41,8 +39,7 @@ public class GraphServiceImpl implements GraphService {
 			vertexes.add(sourceVertex);
 			vertexes.add(destinationVertex);
 			
-			final String edgeId = Character.toString(sourceVertexId) + Character.toString(destinationVertexId);
-			edges.put(edgeId, new Edge(edgeId, sourceVertex, destinationVertex, distance));
+			edges.add(new Edge(sourceVertex, destinationVertex, distance));
 		}
 	}
 	
