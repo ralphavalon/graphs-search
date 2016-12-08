@@ -11,9 +11,9 @@ import com.graphs.AbstractTest;
 import com.graphs.exception.GraphException;
 import com.graphs.exception.NoSuchRouteException;
 
-public class TripsCommandTest extends AbstractTest {
+public class RoutesCommandTest extends AbstractTest {
 	
-	private Command command = new TripsCommand();
+	private Command command = new RoutesCommand();
 	
 	@Before
 	public void setUp() {
@@ -22,11 +22,11 @@ public class TripsCommandTest extends AbstractTest {
 	
 	@Test
 	public void shouldPassWhenExecuteWithCorrectGraphTest() throws IOException, GraphException {
-		assertEquals("2", command.execute(graph, new String[] {"A", "C"}, "<3"));
-		assertEquals("3", command.execute(graph, new String[] {"A", "C"}, "<=3"));
-		assertEquals("3", command.execute(graph, new String[] {"A", "C"}, "=4"));
-		assertEquals("70", command.execute(graph, new String[] {"C", "C"}, ">10"));
-		assertEquals("86", command.execute(graph, new String[] {"C", "C"}, ">=10"));
+		assertEquals("7", command.execute(graph, new String[] {"C", "C"}, "<30"));
+		assertEquals("9", command.execute(graph, new String[] {"C", "C"}, "<=30"));
+		assertEquals("1", command.execute(graph, new String[] {"C", "C"}, "=32"));
+		assertEquals("76", command.execute(graph, new String[] {"C", "C"}, ">50"));
+		assertEquals("82", command.execute(graph, new String[] {"C", "C"}, ">=50"));
 	}
 	
 	@Test
@@ -47,19 +47,19 @@ public class TripsCommandTest extends AbstractTest {
 	
 	@Test
 	public void shouldFailWhenExecuteWithCorrectGraphButInvalidExtraParameterTest() throws IOException, GraphException {
-		expect(IllegalArgumentException.class, "Parameter is missing or not valid. e.g.: trips A-B <=4");
+		expect(IllegalArgumentException.class, "Parameter is missing or not valid. e.g.: routes A-B <=4");
 		command.execute(graph, new String[] {"A", "B"}, "1");
 	}
 	
 	@Test
 	public void shouldFailWhenExecuteWithCorrectGraphButInvalidExtraParameterRegexTest() throws IOException, GraphException {
-		expect(IllegalArgumentException.class, "Parameter is missing or not valid. e.g.: trips A-B <=4");
+		expect(IllegalArgumentException.class, "Parameter is missing or not valid. e.g.: routes A-B <=4");
 		command.execute(graph, new String[] {"A", "B"}, ">>1");
 	}
 	
 	@Test
 	public void shouldFailWhenExecuteWithCorrectGraphButNoExtraParameterRegexTest() throws IOException, GraphException {
-		expect(IllegalArgumentException.class, "Parameter is missing or not valid. e.g.: trips A-B <=4");
+		expect(IllegalArgumentException.class, "Parameter is missing or not valid. e.g.: routes A-B <=4");
 		command.execute(graph, new String[] {"A", "B"}, (String) null);
 	}
 	

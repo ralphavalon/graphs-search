@@ -2,6 +2,7 @@ package com.graphs.commands;
 
 import java.util.List;
 
+import com.graphs.domain.Edge;
 import com.graphs.domain.Graph;
 import com.graphs.domain.Vertex;
 import com.graphs.enums.Operation;
@@ -9,7 +10,7 @@ import com.graphs.exception.GraphException;
 import com.graphs.exception.NoSuchRouteException;
 import com.graphs.service.PathFinder;
 
-public class TripsCommand implements Command {
+public class RoutesCommand implements Command {
 	
 	private static final String PARAMETER_REGEX = "(<=?|=|>=?)([0-9]*)";
 
@@ -22,7 +23,7 @@ public class TripsCommand implements Command {
 		
 		String param = (String) params[0];
 		if(param == null || ! param.matches(PARAMETER_REGEX)) {
-			throw new IllegalArgumentException("Parameter is missing or not valid. e.g.: trips A-B <=4");
+			throw new IllegalArgumentException("Parameter is missing or not valid. e.g.: routes A-B <=4");
 		}
 		
 		final List<List<Vertex>> existingPaths = PathFinder.getInstance(graph).findPaths(vertexesToGo);
@@ -34,18 +35,31 @@ public class TripsCommand implements Command {
 		Integer restrictionNumber = Integer.parseInt(param.replaceAll(PARAMETER_REGEX, "$2"));
 		
 		Operation operation = Operation.findBySignal(operationSignal);
-		return getTripsQuantity(existingPaths, operation, restrictionNumber);
+		return getRoutesQuantity(graph, existingPaths, operation, restrictionNumber);
 	}
 
 
-	private String getTripsQuantity(List<List<Vertex>> existingPaths, Operation operation, int restrictionNumber) {
-		Integer trips = 0;
+	private String getRoutesQuantity(Graph graph, List<List<Vertex>> existingPaths, Operation operation, int restrictionNumber) throws NoSuchRouteException {
+		Integer routes = 0;
 		for (List<Vertex> existingPath : existingPaths) {
-			if(operation.evaluate(existingPath.size() - 1, restrictionNumber)) {
-				trips++;
+			Integer currentPathDistance = 0;
+			for (int i = 0, j = existingPath.size(); i < j; i++) {
+				if( hasVertexToGo(j, i) ) {
+					Vertex source = existingPath.get(i);
+					Vertex destination = existingPath.get(i+1);
+					final Edge edge = graph.getEdgeByVertexes(source, destination);
+					currentPathDistance += edge.getWeight();
+				}
+			}
+			if(operation.evaluate(currentPathDistance, restrictionNumber)) {
+				routes++;
 			}
 		}
-		return String.valueOf(trips);
+		return String.valueOf(routes);
+	}
+	
+	private boolean hasVertexToGo(int vertexesToGoLength, int index) {
+		return (index + 1) < vertexesToGoLength;
 	}
 	
 }

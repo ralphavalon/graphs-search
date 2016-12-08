@@ -20,6 +20,14 @@ public class CommandsTest extends AbstractTest {
 		commands = Commands.getByName("trips");
 		assertNotNull(commands);
 		assertEquals(Commands.TRIPS, commands);
+		
+		commands = Commands.getByName("shortest");
+		assertNotNull(commands);
+		assertEquals(Commands.SHORTEST, commands);
+		
+		commands = Commands.getByName("routes");
+		assertNotNull(commands);
+		assertEquals(Commands.ROUTES, commands);
 	}
 	
 	@Test

@@ -4,7 +4,8 @@ public enum Commands {
 	
 	DISTANCE("distance", new DistanceCommand()),
 	TRIPS("trips", new TripsCommand()),
-	SHORTEST("shortest", new ShortestCommand());
+	SHORTEST("shortest", new ShortestCommand()),
+	ROUTES("routes", new RoutesCommand());
 	
 	private String name;
 	private Command command;

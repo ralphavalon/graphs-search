@@ -4,5 +4,7 @@ distance A-D-C
 distance A-E-B-C-D
 distance A-E-D
 trips C-C <=3
+trips A-C =4
 shortest A-C
 shortest B-B
+routes C-C <30
