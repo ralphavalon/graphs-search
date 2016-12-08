@@ -25,6 +25,7 @@ public class PathFinder {
 	private Set<Vertex> vertexes = null;
 	private Map<Vertex, Set<Vertex>> edgesMap = null;
 	private List<List<Vertex>> allPaths = null;
+	private static final int ALLOWED_DUPLICATES = 5;
 	
 	private PathFinder(Graph graph) {
 		this.graph = graph;
@@ -94,12 +95,11 @@ public class PathFinder {
 	private void getPaths(Vertex current, Vertex destination, List<Vertex> vertexList) {
 		if(current.equals(destination)) {
 			allPaths.add(vertexList);
-			return;
 		}
 		
 		for (Vertex vertex : vertexList) {
 			int duplicates = Collections.frequency(vertexList, vertex);
-			if(duplicates >= 2) {
+			if(duplicates >= ALLOWED_DUPLICATES) {
 				return;
 			}
 		}

@@ -25,8 +25,8 @@ public class TripsCommandTest extends AbstractTest {
 		assertEquals("2", command.execute(graph, new String[] {"A", "C"}, "<3"));
 		assertEquals("3", command.execute(graph, new String[] {"A", "C"}, "<=3"));
 		assertEquals("1", command.execute(graph, new String[] {"A", "C"}, "=3"));
-		assertEquals("2", command.execute(graph, new String[] {"A", "C"}, ">2"));
-		assertEquals("4", command.execute(graph, new String[] {"A", "C"}, ">=2"));
+		assertEquals("70", command.execute(graph, new String[] {"C", "C"}, ">10"));
+		assertEquals("86", command.execute(graph, new String[] {"C", "C"}, ">=10"));
 	}
 	
 	@Test

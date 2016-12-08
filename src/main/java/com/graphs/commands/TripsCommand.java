@@ -11,7 +11,7 @@ import com.graphs.service.PathFinder;
 
 public class TripsCommand implements Command {
 	
-	private static final String PARAMETER_REGEX = "(<=?|=|>=?)([0-9])*";
+	private static final String PARAMETER_REGEX = "(<=?|=|>=?)([0-9]*)";
 
 	@Override
 	public String execute(Graph graph, String[] vertexesToGo, Object... params) throws GraphException {
@@ -47,5 +47,5 @@ public class TripsCommand implements Command {
 		}
 		return String.valueOf(trips);
 	}
-
+	
 }
