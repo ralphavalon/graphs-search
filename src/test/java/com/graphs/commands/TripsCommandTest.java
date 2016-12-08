@@ -22,11 +22,11 @@ public class TripsCommandTest extends AbstractTest {
 	
 	@Test
 	public void shouldPassWhenExecuteWithCorrectGraphTest() throws IOException, GraphException {
-		assertEquals("2", command.execute(graph, new String[] {"A", "C"}, "<4"));
-		assertEquals("3", command.execute(graph, new String[] {"A", "C"}, "<=4"));
-		assertEquals("1", command.execute(graph, new String[] {"A", "C"}, "=4"));
-		assertEquals("1", command.execute(graph, new String[] {"A", "C"}, ">3"));
-		assertEquals("3", command.execute(graph, new String[] {"A", "C"}, ">=3"));
+		assertEquals("2", command.execute(graph, new String[] {"A", "C"}, "<3"));
+		assertEquals("3", command.execute(graph, new String[] {"A", "C"}, "<=3"));
+		assertEquals("1", command.execute(graph, new String[] {"A", "C"}, "=3"));
+		assertEquals("1", command.execute(graph, new String[] {"A", "C"}, ">2"));
+		assertEquals("3", command.execute(graph, new String[] {"A", "C"}, ">=2"));
 	}
 	
 	@Test
@@ -36,7 +36,7 @@ public class TripsCommandTest extends AbstractTest {
 	
 	@Test
 	public void shouldPassWhenExecuteWithCorrectGraphButLowRestrictionNumberTest() throws IOException, GraphException {
-		assertEquals("0", command.execute(graph, new String[] {"A", "B"}, "=1"));
+		assertEquals("0", command.execute(graph, new String[] {"A", "B"}, "<1"));
 	}
 	
 	@Test

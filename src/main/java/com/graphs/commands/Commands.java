@@ -3,7 +3,8 @@ package com.graphs.commands;
 public enum Commands {
 	
 	DISTANCE("distance", new DistanceCommand()),
-	TRIPS("trips", new TripsCommand());
+	TRIPS("trips", new TripsCommand()),
+	SHORTEST("shortest", new ShortestCommand());
 	
 	private String name;
 	private Command command;

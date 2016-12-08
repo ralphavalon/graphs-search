@@ -33,8 +33,8 @@ public abstract class AbstractTest {
 	protected final Vertex e = new Vertex("E");
 	protected Edge ab = new Edge(a, b, 5);
 	protected Edge ad = new Edge(a, d, 10);
-	protected Edge bc = new Edge(b, c, 4);
-	protected Edge bd = new Edge(b, d, 4);
+	protected Edge bc = new Edge(b, c, 2);
+	protected Edge bd = new Edge(b, d, 1);
 	protected Edge dc = new Edge(d, c, 40);
 	protected Edge ca = new Edge(c, a, 2);
 	protected Edge ed = new Edge(e, d, 10);
@@ -68,7 +68,7 @@ public abstract class AbstractTest {
 		assertTrue(String.format(errorMessage, contents.length, text.length), contents.length == text.length);
 		for (int i = 0; i < contents.length; i++) {
 			final String linePrinted = contents[i];
-			assertTrue(linePrinted.equals(text[i]));
+			assertTrue("Expected: '" + text[i] + "' Actual: '" + linePrinted +"'", linePrinted.equals(text[i]));
 		}
 	}
 	

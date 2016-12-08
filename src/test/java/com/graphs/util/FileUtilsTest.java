@@ -14,8 +14,8 @@ import com.graphs.exception.EmptyFileException;
 
 public class FileUtilsTest extends AbstractTest {
 	
-	private String[] dataLines = { "AB5", "BC4" }; 
-
+	private String[] dataLines = { "AB5", "BC4", "CD8", "DC8", "DE6", "AD5", "CE2", "EB3", "AE7" };
+	
 	@Test
 	public void shouldPassWhenFileIsGivenAndDoesExistTest() throws IOException {
 		final File file = FileUtils.getFile("data.txt");
