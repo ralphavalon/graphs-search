@@ -44,6 +44,7 @@ public class PathFinder {
 	}
 	
 	public List<List<Vertex>> findPaths(String[] vertexesToGo) throws GraphException {
+		instance.allPaths = new ArrayList<>();
 		Vertex source = graph.getVertexById(vertexesToGo[0]);
 		Vertex destination = graph.getVertexById(vertexesToGo[1]);
 		
@@ -125,8 +126,7 @@ public class PathFinder {
 		} else if( ! instance.graph.equals(graph) ) {
 			instance = new PathFinder(graph);
 		}
-		instance.allPaths = new ArrayList<>();
 		return instance;
 	}
-
+	
 }
