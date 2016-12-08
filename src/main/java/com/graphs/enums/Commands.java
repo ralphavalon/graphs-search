@@ -1,4 +1,10 @@
-package com.graphs.commands;
+package com.graphs.enums;
+
+import com.graphs.commands.Command;
+import com.graphs.commands.DistanceCommand;
+import com.graphs.commands.RoutesCommand;
+import com.graphs.commands.ShortestCommand;
+import com.graphs.commands.TripsCommand;
 
 public enum Commands {
 	

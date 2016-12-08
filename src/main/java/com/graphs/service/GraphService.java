@@ -2,8 +2,10 @@ package com.graphs.service;
 
 import java.util.List;
 
+import com.graphs.domain.Graph;
+
 public interface GraphService {
 	
-	List<String> execute(List<String> commandFileLines, List<String> dataFileLines);
+	Graph getGraph(List<String> dataFileLines);
 
 }

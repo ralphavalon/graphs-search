@@ -8,6 +8,7 @@ import java.io.IOException;
 import org.junit.Test;
 
 import com.graphs.AbstractTest;
+import com.graphs.enums.Commands;
 
 public class CommandsTest extends AbstractTest {
 	

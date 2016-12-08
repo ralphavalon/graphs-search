@@ -4,6 +4,9 @@ import java.io.File;
 import java.io.IOException;
 import java.util.List;
 
+import com.graphs.domain.Graph;
+import com.graphs.service.CommandService;
+import com.graphs.service.CommandServiceImpl;
 import com.graphs.service.GraphService;
 import com.graphs.service.GraphServiceImpl;
 import com.graphs.util.FileUtils;
@@ -19,7 +22,10 @@ public class Main {
 		final List<String> commandFileLines = FileUtils.readLines(commandFile);
 		
 		GraphService graphService = new GraphServiceImpl();
-		List<String> results = graphService.execute(commandFileLines, dataFileLines);
+		Graph graph = graphService.getGraph(dataFileLines);
+		CommandService commandService = new CommandServiceImpl();
+		
+		List<String> results = commandService.execute(graph, commandFileLines);
 		for (String result : results) {
 			System.out.println(result);
 		}

@@ -10,15 +10,13 @@ import com.graphs.domain.Vertex;
 
 public class GraphServiceImpl implements GraphService {
 
-	private CommandService commandService = new CommandServiceImpl();
 	private Set<Vertex> vertexes;
 	private Set<Edge> edges;
 	
 	@Override
-	public List<String> execute(List<String> commandFileLines, List<String> dataFileLines) {
+	public Graph getGraph(List<String> dataFileLines) {
 		setVertexesAndEdges(dataFileLines);
-		Graph graph = new Graph(vertexes, edges);
-		return commandService.execute(graph, commandFileLines);
+		return new Graph(vertexes, edges);
 	}
 
 	private void setVertexesAndEdges(List<String> dataFileLines) {

@@ -4,8 +4,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.graphs.commands.Command;
-import com.graphs.commands.Commands;
 import com.graphs.domain.Graph;
+import com.graphs.enums.Commands;
 import com.graphs.exception.GraphException;
 
 public class CommandServiceImpl implements CommandService {
