@@ -2,18 +2,13 @@ package com.graphs.service;
 
 import static org.junit.Assert.assertEquals;
 
-import java.util.Arrays;
-import java.util.HashSet;
 import java.util.Iterator;
 import java.util.List;
-import java.util.Set;
 
 import org.junit.Before;
 import org.junit.Test;
 
 import com.graphs.AbstractTest;
-import com.graphs.domain.Edge;
-import com.graphs.domain.Graph;
 import com.graphs.domain.Vertex;
 import com.graphs.exception.GraphException;
 
@@ -21,26 +16,14 @@ public class PathFinderServiceTest extends AbstractTest {
 	
 	private PathFinder pathFinder;
 	
-	final Vertex a = new Vertex("A");
-	final Vertex b = new Vertex("B");
-	final Vertex c = new Vertex("C");
-	final Vertex d = new Vertex("D");
-	final Vertex e = new Vertex("E");
-	Edge ab = new Edge(a, b, 5);
-	Edge ad = new Edge(a, d, 10);
-	Edge bc = new Edge(b, c, 4);
-	Edge bd = new Edge(b, d, 4);
-	Edge dc = new Edge(d, c, 40);
-	Edge ca = new Edge(c, a, 2);
-	Edge ed = new Edge(e, d, 10);
-	
 	@Before
 	public void setUp() {
-		initGraph();
+		initComplexGraph();
 	}
 	
 	@Test
 	public void shouldPassWhenFindingPathWithSimpleGraphTest() throws GraphException {
+		initGraph();
 		pathFinder = PathFinder.getInstance(graph);
 		final List<List<Vertex>> existingPaths = pathFinder.findPaths(new String[] {"A", "C"} );
 		assertEquals(1, existingPaths.size());
@@ -50,7 +33,6 @@ public class PathFinderServiceTest extends AbstractTest {
 	
 	@Test
 	public void shouldPassWhenFindingPathWithComplexGraphAndManyPathsTest() throws GraphException {
-		initComplexGraph();
 		pathFinder = PathFinder.getInstance(graph);
 		final List<List<Vertex>> existingPaths = pathFinder.findPaths(new String[] {"A", "C"} );
 		assertEquals(3, existingPaths.size());
@@ -62,7 +44,6 @@ public class PathFinderServiceTest extends AbstractTest {
 	
 	@Test
 	public void shouldPassWhenFindingPathWithComplexGraphAndNoPathsTest() throws GraphException {
-		initComplexGraph();
 		pathFinder = PathFinder.getInstance(graph);
 		final List<List<Vertex>> existingPaths = pathFinder.findPaths(new String[] {"A", "E"} );
 		assertEquals(0, existingPaths.size());		
@@ -70,7 +51,6 @@ public class PathFinderServiceTest extends AbstractTest {
 	
 	@Test
 	public void shouldPassWhenFindingPathWithComplexGraphAndSourceEqualsDestinationTest() throws GraphException {
-		initComplexGraph();
 		pathFinder = PathFinder.getInstance(graph);
 		final List<List<Vertex>> existingPaths = pathFinder.findPaths(new String[] {"A", "A"} );
 		assertEquals(3, existingPaths.size());
@@ -82,7 +62,6 @@ public class PathFinderServiceTest extends AbstractTest {
 	
 	@Test
 	public void shouldPassWhenFindingPathWithComplexGraphTest() throws GraphException {
-		initComplexGraph();
 		pathFinder = PathFinder.getInstance(graph);
 		List<List<Vertex>> existingPaths = pathFinder.findPaths(new String[] {"A", "A"} );
 		assertEquals(3, existingPaths.size());
@@ -216,11 +195,4 @@ public class PathFinderServiceTest extends AbstractTest {
 		}
 	}
 
-	private void initComplexGraph() {
-		final Set<Vertex> set = new HashSet<Vertex>(Arrays.asList(a, b, c, d, e));
-		final Set<Edge> edges = new HashSet<Edge>();
-		edges.addAll(Arrays.asList(ab, ad, bc, bd, dc, ca, ed));
-		this.graph = new Graph(set, edges);
-	}
-	
 }

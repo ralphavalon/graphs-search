@@ -26,6 +26,19 @@ public abstract class AbstractTest {
 	private final ByteArrayOutputStream outContent = new ByteArrayOutputStream();
 	private final ByteArrayOutputStream errContent = new ByteArrayOutputStream();
 	
+	protected final Vertex a = new Vertex("A");
+	protected final Vertex b = new Vertex("B");
+	protected final Vertex c = new Vertex("C");
+	protected final Vertex d = new Vertex("D");
+	protected final Vertex e = new Vertex("E");
+	protected Edge ab = new Edge(a, b, 5);
+	protected Edge ad = new Edge(a, d, 10);
+	protected Edge bc = new Edge(b, c, 4);
+	protected Edge bd = new Edge(b, d, 4);
+	protected Edge dc = new Edge(d, c, 40);
+	protected Edge ca = new Edge(c, a, 2);
+	protected Edge ed = new Edge(e, d, 10);
+	
 	@Before
 	public void setUpStreams() {
 	    System.setOut(new PrintStream(outContent));
@@ -68,6 +81,13 @@ public abstract class AbstractTest {
 		edges.add(new Edge(a, b, 5));
 		edges.add(new Edge(b, c, 4));
 		graph = new Graph(set, edges);
+	}
+	
+	protected void initComplexGraph() {
+		final Set<Vertex> set = new HashSet<Vertex>(Arrays.asList(a, b, c, d, e));
+		final Set<Edge> edges = new HashSet<Edge>();
+		edges.addAll(Arrays.asList(ab, ad, bc, bd, dc, ca, ed));
+		this.graph = new Graph(set, edges);
 	}
 
 }
