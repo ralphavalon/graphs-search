@@ -22,7 +22,7 @@ public class ShortestCommandTest extends AbstractTest {
 	
 	@Test
 	public void shouldPassWhenExecuteWithCorrectGraphTest() throws IOException, GraphException {
-		assertEquals("6", command.execute(graph, new String[] {"A", "D"}));
+		assertEquals("9", command.execute(graph, new String[] {"A", "C"}));
 	}
 	
 	@Test
@@ -39,7 +39,7 @@ public class ShortestCommandTest extends AbstractTest {
 	@Test
 	public void shouldPassWhenExecuteWithCorrectGraphButNotExistingRouteToGoTest() throws IOException, GraphException {
 		expect(NoSuchRouteException.class, "NO SUCH ROUTE");
-		command.execute(graph, new String[] {"A", "E"} );
+		command.execute(graph, new String[] {"E", "A"} );
 	}
 	
 }

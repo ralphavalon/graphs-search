@@ -32,12 +32,14 @@ public abstract class AbstractTest {
 	protected final Vertex d = new Vertex("D");
 	protected final Vertex e = new Vertex("E");
 	protected Edge ab = new Edge(a, b, 5);
-	protected Edge ad = new Edge(a, d, 10);
-	protected Edge bc = new Edge(b, c, 2);
-	protected Edge bd = new Edge(b, d, 1);
-	protected Edge dc = new Edge(d, c, 40);
-	protected Edge ca = new Edge(c, a, 2);
-	protected Edge ed = new Edge(e, d, 10);
+	protected Edge bc = new Edge(b, c, 4);
+	protected Edge cd = new Edge(c, d, 8);
+	protected Edge dc = new Edge(d, c, 8);
+	protected Edge de = new Edge(d, e, 6);
+	protected Edge ad = new Edge(a, d, 5);
+	protected Edge ce = new Edge(c, e, 2);
+	protected Edge eb = new Edge(e, b, 3);
+	protected Edge ae = new Edge(a, e, 7);
 	
 	@Before
 	public void setUpStreams() {
@@ -86,7 +88,7 @@ public abstract class AbstractTest {
 	protected void initComplexGraph() {
 		final Set<Vertex> set = new HashSet<Vertex>(Arrays.asList(a, b, c, d, e));
 		final Set<Edge> edges = new HashSet<Edge>();
-		edges.addAll(Arrays.asList(ab, ad, bc, bd, dc, ca, ed));
+		edges.addAll(Arrays.asList(ab, ad, ae, bc, ce, dc, cd, de, eb));
 		this.graph = new Graph(set, edges);
 	}
 

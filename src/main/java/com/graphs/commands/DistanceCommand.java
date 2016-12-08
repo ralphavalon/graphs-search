@@ -4,7 +4,6 @@ import com.graphs.domain.Edge;
 import com.graphs.domain.Graph;
 import com.graphs.domain.Vertex;
 import com.graphs.exception.GraphException;
-import com.graphs.exception.NoSuchRouteException;
 
 public class DistanceCommand implements Command {
 
@@ -17,9 +16,6 @@ public class DistanceCommand implements Command {
 				Vertex source = graph.getVertexById(vertexesToGo[i]);
 				Vertex destination = graph.getVertexById(vertexesToGo[i+1]);
 				final Edge edge = graph.getEdgeByVertexes(source, destination);
-				if(edge == null) {
-					throw new NoSuchRouteException();
-				}
 				distance += edge.getWeight();
 			}
 		}
