@@ -16,6 +16,10 @@ public class CommandsTest extends AbstractTest {
 		Commands commands = Commands.getByName("distance");
 		assertNotNull(commands);
 		assertEquals(Commands.DISTANCE, commands);
+		
+		commands = Commands.getByName("trips");
+		assertNotNull(commands);
+		assertEquals(Commands.TRIPS, commands);
 	}
 	
 	@Test

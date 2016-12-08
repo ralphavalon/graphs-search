@@ -2,7 +2,8 @@ package com.graphs.commands;
 
 public enum Commands {
 	
-	DISTANCE("distance", new DistanceCommand());
+	DISTANCE("distance", new DistanceCommand()),
+	TRIPS("trips", new TripsCommand());
 	
 	private String name;
 	private Command command;

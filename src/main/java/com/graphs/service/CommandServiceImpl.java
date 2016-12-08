@@ -20,9 +20,13 @@ public class CommandServiceImpl implements CommandService {
 			}
 			String commandName = commandInstructions[0];
 			String vertexesToGo = commandInstructions[1];
+			String param = null;
+			if(commandInstructions.length > 2) {
+				param = commandInstructions[2];
+			}
 			Command command = Commands.getByName(commandName).getCommand();
 			try {
-				results.add(command.execute(graph, vertexesToGo.split("-")));
+				results.add(command.execute(graph, vertexesToGo.split("-"), param));
 			} catch (GraphException e) {
 				results.add(e.getMessage());
 			}

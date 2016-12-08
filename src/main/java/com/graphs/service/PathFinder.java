@@ -48,19 +48,11 @@ public class PathFinder {
 		Vertex source = graph.getVertexById(vertexesToGo[0]);
 		Vertex destination = graph.getVertexById(vertexesToGo[1]);
 		
-		System.out.println(edgesMap);
 		getPaths(source, destination);
-		System.out.println(allPaths);
-		for (List<Vertex> vertexList : allPaths) {
-			System.out.println(vertexList.stream()
-					  .map(Vertex::toString)
-					  .collect(Collectors.joining("->")));
-		}
 		return allPaths;
 	}
 
 	public void bfsRecursive(Queue<Object> queue) {
-		// BFS uses Queue data structure
 		if (queue.isEmpty())
 			return;
 		Vertex vertex = (Vertex) queue.remove();

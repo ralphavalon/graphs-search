@@ -7,31 +7,31 @@ public enum Operation {
 	LESS_THAN("<") {
 		@Override
 		public boolean evaluate(int first, int second) {
-			return first < second;
+			return getStops(first) < second;
 		}
 	},
 	LESS_EQUAL_THAN("<=") {
 		@Override
 		public boolean evaluate(int first, int second) {
-			return first <= second;
+			return getStops(first) <= second;
 		}
 	},
 	EQUAL_THAN("=") {
 		@Override
 		public boolean evaluate(int first, int second) {
-			return first == second;
+			return getStops(first) == second;
 		}
 	},
 	GREATER_THAN(">") {
 		@Override
 		public boolean evaluate(int first, int second) {
-			return first > second;
+			return getStops(first) > second;
 		}
 	},
 	GREATER_EQUAL_THAN(">=") {
 		@Override
 		public boolean evaluate(int first, int second) {
-			return first >= second;
+			return getStops(first) >= second;
 		}
 	};
 	
@@ -39,6 +39,10 @@ public enum Operation {
 	
 	private Operation(String operationSignal) {
 		this.operationSignal = operationSignal;
+	}
+	
+	private static int getStops(int first) {
+		return first - 1;
 	}
 	
 	public abstract boolean evaluate(int first, int second);
