@@ -53,4 +53,12 @@ public class GraphServiceTest extends AbstractTest {
 		graphService.execute(commandFileLines, dataFileLines);
 	}
 	
+	@Test
+	public void shouldFailWhenExecuteWithWrongDataFileLinesOnWeightTest() throws IOException {
+		List<String> commandFileLines = Arrays.asList("distance A-B-C");
+		List<String> dataFileLines = Arrays.asList("AB", "B");
+		expect(IllegalArgumentException.class, "It should follow this order: LetterLetterNumber");
+		graphService.execute(commandFileLines, dataFileLines);
+	}
+	
 }

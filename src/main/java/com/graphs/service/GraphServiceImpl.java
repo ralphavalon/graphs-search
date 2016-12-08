@@ -31,7 +31,12 @@ public class GraphServiceImpl implements GraphService {
 			
 			final char sourceVertexId = dataFileLine.charAt(0);
 			final char destinationVertexId = dataFileLine.charAt(1);
-			final Integer distance = Integer.parseInt(dataFileLine.substring(2)); 
+			Integer distance;
+			try {
+				distance = Integer.parseInt(dataFileLine.substring(2).trim());
+			} catch (NumberFormatException e) {
+				throw new IllegalArgumentException("It should follow this order: LetterLetterNumber");
+			} 
 			
 			final Vertex sourceVertex = new Vertex(Character.toString(sourceVertexId));
 			final Vertex destinationVertex = new Vertex(Character.toString(destinationVertexId));

@@ -44,6 +44,12 @@ public class MainTest extends AbstractTest {
 	}
 	
 	@Test
+	public void shouldFailWhenWrongDataTest() throws IOException {
+		expect(IllegalArgumentException.class ,"It should follow this order: LetterLetterNumber");
+		Main.main(new String[]{"wrong_data.txt", "commands.txt"});
+	}
+	
+	@Test
 	public void shouldFailWhenMissingDataFileTest() throws IOException {
 		expect(IllegalArgumentException.class ,"Data file is missing");
 		Main.main(new String[]{});
