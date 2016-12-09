@@ -5,6 +5,11 @@
 
 * On Eclipse: File -> Import -> Existing Maven Projects
 
+### Pre-requisites ###
+
+* Java 1.8
+* Maven (Build)
+
 ### How to build ###
 
 * With Maven on path, go on prompt/terminal and execute:
